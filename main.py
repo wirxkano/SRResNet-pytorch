@@ -40,7 +40,7 @@ def main():
     
     ckpt_path = os.path.join(args.ckpt_dir, 'best_model.pth')
     if not os.path.exists(ckpt_path):
-      raise FileNotFoundError(f"Checkpoint file not found at {ckpt_path}")
+      raise FileNotFoundError(f"Checkpoint file (best_model.pth) not found at {ckpt_path}")
     
     model = SRTrainer(SRResNet(num_res_blocks=16), None, None)
     model.network.load_state_dict(torch.load(ckpt_path, weights_only=True))
