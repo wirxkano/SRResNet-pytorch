@@ -20,7 +20,7 @@ Image Super-Resolution is a machine learning task where the goal is to increase 
 - Ensure the trained checkpoint (e.g., best_model.pth) exists inside the specified directory.
 - Then run the following command to perform inference: `python main.py --mode inference --ckpt_dir ./checkpoints --img_path ./example_image.png`.
 
-### Result
+## Result
 Example output image:
 <img src="./result.png" />
 
