@@ -1,28 +1,56 @@
 # Single Image Super-Resolution with SRResNet
 
 ## Overview
-Image Super-Resolution is a machine learning task where the goal is to increase the resolution of an image, often by a factor of 4x or more, while maintaining its content and details as much as possible. The end result is a high-resolution version of the original image. This task can be used for various applications such as improving image quality, enhancing visual detail, and increasing the accuracy of computer vision algorithms.
+Single Image Super-Resolution (SISR) aims to reconstruct a high-resolution (HR) image from its low-resolution (LR) counterpart, enhancing visual quality and preserving fine details.  
+This technique has applications across various domains, including medical imaging, surveillance, and improving the performance of downstream computer vision tasks.
+
+In this project, we implement **SRResNet**, a deep learning model for high-quality image upscaling, based on the paper:  
+[*Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network*](https://arxiv.org/abs/1609.04802).
+
+---
 
 ## Dataset
-- DIV2K dataset is used for training and validation.
-- Set5 and Set14 are used for testing (inference).
-- You can download DIV2K dataset here: https://data.vision.ee.ethz.ch/cvl/DIV2K/
+- **Training and Validation**: **DF2K** dataset, consisting of high-quality (2K resolution) images.
+- **Testing**: Standard benchmark datasets **Set5** and **Set14** are used for evaluation.
+
+---
 
 ## Methodology
-- The Super-Resolution Residual Network (SRResNet) is used, as proposed in the paper "Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network" (https://arxiv.org/abs/1609.04802).
-- The model was trained for 200 epochs using the L1 loss function.
+- The **Super-Resolution Residual Network (SRResNet)** architecture is used.
+- The model is trained with the **L1 loss function** for **200 epochs**, encouraging sharper image reconstruction and reduced blurring.
+- Key components of the model:
+  - Deep residual learning with skip connections.
+  - PixelShuffle layers for efficient upscaling.
+  - Batch Normalization and Parametric ReLU (PReLU) activations.
+
+---
 
 ## Usage
-### For training
-- Update the image folder path in constants.py if needed.
-- Run the following command to start training: `python main.py --mode train --ckpt_dir ./checkpoints`.
-### For testing
-- Ensure the trained checkpoint (e.g., best_model.pth) exists inside the specified directory.
-- Then run the following command to perform inference: `python main.py --mode inference --ckpt_dir ./checkpoints --img_path ./example_image.png`.
 
-## Result
+### Training
+1. Update the image folder path in `constants.py`, if necessary.
+2. Run the following command to start training:
+
+```bash
+python main.py --mode train --ckpt_dir ./checkpoints
+```
+
+### Inference (Testing)
+1. Ensure the trained checkpoint (e.g., `best_model.pth`) is saved inside the specified checkpoint directory.
+2. Run the following command to perform inference:
+
+```bash
+python main.py --mode inference --ckpt_dir ./checkpoints --img_path ./example_image.png
+```
+
+## Results
 Example output image:
-<img src="./result.png" />
 
+<img src="Results/result.png" alt="Super-Resolution Result" width="500"/>
 
-This project was implemented for educational purposes, based on the original SRGAN paper.
+## Notes
+This project was implemented for educational purposes, following the original SRGAN paper.
+
+For a more advanced version with adversarial loss and perceptual loss, consider implementing SRGAN.
+
+```
